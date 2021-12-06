@@ -39,3 +39,17 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM'
+
+          name: Example workflow for Golang using Snyk
+
+  sca-using-snyk:
+    name: Software Composiiton Analysis using Snyk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Snyk to check for vulnerabilities
+        # TODO: Take programming language as an input
+        uses: snyk/actions/golang@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+          # TODO: Mention how to generate a Snyk token in readme
