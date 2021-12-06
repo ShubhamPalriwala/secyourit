@@ -40,8 +40,6 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM'
 
-          name: Example workflow for Golang using Snyk
-
   sca-using-snyk:
     name: Software Composiiton Analysis using Snyk
     runs-on: ubuntu-latest
