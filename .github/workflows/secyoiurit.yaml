@@ -8,8 +8,19 @@ on:
       - "master"
 
 jobs:
-  secyourit:
+  hola-secyourit:
+    name: "Welcome to SecyourIT"
     runs-on: ubuntu-latest
     steps:
       - name: Project Init
         run: echo "SecyourIT says Hi!"
+  
+  find-secrets:
+    name: 'Scan for Secrets'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Find Secrets
+        uses: max/secret-scan@master
+        with:
+          exclude_path: '.github/workflows/configuration/exclude_paths.txt'
