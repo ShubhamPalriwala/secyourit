@@ -24,3 +24,18 @@ jobs:
         uses: max/secret-scan@master
         with:
           exclude_path: '.github/workflows/configuration/exclude_paths.txt'
+
+  scan-image-using-trivy:
+    name: Trivy Scan Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Scan File system suing Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM'
