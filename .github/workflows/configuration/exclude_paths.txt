@@ -1,0 +1,5 @@
+poetry.lock
+CHANGELOG.md
+.*test_.*.py
+README.md
+LICENSE.md
