@@ -1,0 +1,15 @@
+name: secyourit
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+    branches:
+      - "master"
+
+jobs:
+  secyourit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Project Init
+        run: echo "SecyourIT says Hi!"
