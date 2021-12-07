@@ -34,7 +34,7 @@ jobs:
           exclude_path: '.github/workflows/configuration/exclude_paths.txt'
   
   verify-commits-using-notary:
-    name: Verify
+    name: Verify Commits using Notary
     runs-on: ubuntu-latest
     steps:
       - uses: vchain-us/verify-action@master
