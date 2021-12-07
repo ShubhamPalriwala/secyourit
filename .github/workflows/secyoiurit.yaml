@@ -1,11 +1,9 @@
 name: secyourit
 on:
-  push:
-    branches:
-      - "master"
-  pull_request:
-    branches:
-      - "master"
+  workflow_call:
+    secrets:
+      SNYK_API_TOKEN:
+        required: true
 
 jobs:
   hola-secyourit:
