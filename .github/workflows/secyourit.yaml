@@ -33,13 +33,15 @@ jobs:
         with:
           exclude_path: '.github/workflows/configuration/exclude_paths.txt'
   
-  # verify-commits-using-notary:
-  #   name: Verify
-  #   uses: vchain-us/verify-action@master
-  #   with:
-  #     signerID: ${{inputs.signerID}}
-  #     org: ${{inputs.org}}
-  #     path: ${{inputs.path}}
+  verify-commits-using-notary:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: vchain-us/verify-action@master
+        with:
+          signerID: ${{inputs.signerID}}
+          org: ${{inputs.org}}
+          path: ${{inputs.path}}
 
   # scan-image-using-trivy:
   #   name: Trivy Scan Image
