@@ -49,3 +49,14 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
           # TODO: Mention how to generate a Snyk token in readme
+
+  sast-using-appthreat:
+    name: SAST using AppThreat
+    runs-on: ubuntu-latest
+    steps:
+      - uses actions/checkout@v2
+      - name: Run SAST Scan by AppThreat
+        uses: AppThreat/sast-scan-action@master
+        with:
+          type: "python"
+          # TODO: Take programming language as an input
