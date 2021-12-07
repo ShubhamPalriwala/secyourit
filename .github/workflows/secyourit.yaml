@@ -3,16 +3,17 @@ on:
   workflow_call:
     inputs:
       signerID:
+        required: false
         type: string
       org:
+        required: false
         type: string
       path:
         required: true
-
+        type: string
     secrets:
       SNYK_API_TOKEN:
         required: true
-        type: string
 
 jobs:
   hola-secyourit:
@@ -33,12 +34,14 @@ jobs:
           exclude_path: '.github/workflows/configuration/exclude_paths.txt'
   
   verify-commits-using-notary:
-    name: Verify
-    uses: vchain-us/verify-action@master
-    with:
-      signerID: ${{inputs.signerID}}
-      org: ${{inputs.org}}
-      path: ${{inputs.path}}
+    name: Verify Commits using Notary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: vchain-us/verify-action@master
+        with:
+          signerID: ${{inputs.signerID}}
+          org: ${{inputs.org}}
+          path: ${{inputs.path}}
 
   scan-image-using-trivy:
     name: Trivy Scan Image
