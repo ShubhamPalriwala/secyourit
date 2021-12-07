@@ -11,6 +11,9 @@ on:
       path:
         required: true
         type: string
+      language:
+        required: true
+        type: string
     secrets:
       SNYK_API_TOKEN:
         required: true
@@ -64,11 +67,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run Snyk to check for vulnerabilities
-        # TODO: Take programming language as an input
-        uses: snyk/actions/golang@master
+        uses: snyk/actions/${{inputs.language}}@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
-          # TODO: Mention how to generate a Snyk token in readme
 
   sast-using-appthreat:
     name: SAST using AppThreat
@@ -78,5 +79,4 @@ jobs:
       - name: Run SAST Scan by AppThreat
         uses: AppThreat/sast-scan-action@master
         with:
-          type: "python"
-          # TODO: Take programming language as an input
+          type: ${{inputs.language}}

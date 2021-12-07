@@ -13,7 +13,8 @@ jobs:
         with:
             signerID: 
             org: 
-            path: 
+            path:
+            language:
         secrets:
             SNYK_API_TOKEN: ${{secrets.SNYK_API_TOKEN}}
 ```
@@ -24,6 +25,7 @@ jobs:
 | SignerID | Input | Notary Commit Verification | false | List of SignerID(s) (separated by space) to authenticate against. A SignerID is the signer's public address (represented as a 40 hex characters long string prefixed with 0x) |
 | Org | Input | Notary Commit Verification | false | Organization's ID to authenticate against. Note that org takes precedence over signerID |
 | Path | Input | Notary Commit Verification | true | Path to git working directory. Default to the current SecYourIT repo |
+| Language | Input | SCA and SAST | true | The language is required to run static analysis of the code and point out the flaws |
 | Snyk API Token | Secret | SCA using Snyk | true | Snyk API token to allow Snyk to authenticate you and show you the results on the dashboard |
 
 For more information about 
