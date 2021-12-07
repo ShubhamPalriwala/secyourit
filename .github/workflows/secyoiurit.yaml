@@ -1,9 +1,18 @@
 name: secyourit
 on:
   workflow_call:
+    inputs:
+      signerID:
+        type: string
+      org:
+        type: string
+      path:
+        required: true
+
     secrets:
       SNYK_API_TOKEN:
         required: true
+        type: string
 
 jobs:
   hola-secyourit:
@@ -22,6 +31,14 @@ jobs:
         uses: max/secret-scan@master
         with:
           exclude_path: '.github/workflows/configuration/exclude_paths.txt'
+  
+  verify-commits-using-notary:
+    name: Verify
+    uses: vchain-us/verify-action@master
+    with:
+      signerID: ${{inputs.signerID}}
+      org: ${{inputs.org}}
+      path: ${{inputs.path}}
 
   scan-image-using-trivy:
     name: Trivy Scan Image
