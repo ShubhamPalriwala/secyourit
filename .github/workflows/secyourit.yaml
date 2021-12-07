@@ -21,58 +21,58 @@ jobs:
       - name: Project Init
         run: echo "SecyourIT says Hi!"
   
-  find-secrets:
-    name: 'Scan for Secrets'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Find Secrets
-        uses: max/secret-scan@master
-        with:
-          exclude_path: '.github/workflows/configuration/exclude_paths.txt'
+  # find-secrets:
+  #   name: 'Scan for Secrets'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Find Secrets
+  #       uses: max/secret-scan@master
+  #       with:
+  #         exclude_path: '.github/workflows/configuration/exclude_paths.txt'
   
-  verify-commits-using-notary:
-    name: Verify
-    uses: vchain-us/verify-action@master
-    with:
-      signerID: ${{inputs.signerID}}
-      org: ${{inputs.org}}
-      path: ${{inputs.path}}
+  # verify-commits-using-notary:
+  #   name: Verify
+  #   uses: vchain-us/verify-action@master
+  #   with:
+  #     signerID: ${{inputs.signerID}}
+  #     org: ${{inputs.org}}
+  #     path: ${{inputs.path}}
 
-  scan-image-using-trivy:
-    name: Trivy Scan Image
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Scan File system suing Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH,MEDIUM'
+  # scan-image-using-trivy:
+  #   name: Trivy Scan Image
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Scan File system suing Trivy
+  #       uses: aquasecurity/trivy-action@master
+  #       with:
+  #         scan-type: 'fs'
+  #         format: 'table'
+  #         exit-code: '1'
+  #         ignore-unfixed: true
+  #         vuln-type: 'os,library'
+  #         severity: 'CRITICAL,HIGH,MEDIUM'
 
-  sca-using-snyk:
-    name: Software Composiiton Analysis using Snyk
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run Snyk to check for vulnerabilities
-        # TODO: Take programming language as an input
-        uses: snyk/actions/golang@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
-          # TODO: Mention how to generate a Snyk token in readme
+  # sca-using-snyk:
+  #   name: Software Composiiton Analysis using Snyk
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Run Snyk to check for vulnerabilities
+  #       # TODO: Take programming language as an input
+  #       uses: snyk/actions/golang@master
+  #       env:
+  #         SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+  #         # TODO: Mention how to generate a Snyk token in readme
 
-  sast-using-appthreat:
-    name: SAST using AppThreat
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run SAST Scan by AppThreat
-        uses: AppThreat/sast-scan-action@master
-        with:
-          type: "python"
-          # TODO: Take programming language as an input
+  # sast-using-appthreat:
+  #   name: SAST using AppThreat
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Run SAST Scan by AppThreat
+  #       uses: AppThreat/sast-scan-action@master
+  #       with:
+  #         type: "python"
+  #         # TODO: Take programming language as an input
