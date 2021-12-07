@@ -1,0 +1,14 @@
+name: run-secyourit
+on:
+  push:
+    branches:
+      - "test"
+jobs:
+  secyourit:
+    uses: shubhampalriwala/secyourit/.github/workflows/secyourit.yaml@test
+    with:
+      signerID: "testId"
+      org:
+      path: "https://github.com/shubhampalriwala/secyourit"
+    secrets:
+      SNYK_API_TOKEN: ${{secrets.SNYK_API_TOKEN}}
