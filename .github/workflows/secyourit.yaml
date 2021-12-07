@@ -62,7 +62,7 @@ jobs:
           severity: 'CRITICAL,HIGH,MEDIUM'
 
   sca-using-snyk:
-    name: Software Composiiton Analysis using Snyk
+    name: Software Compositon Analysis using Snyk
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
