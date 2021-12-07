@@ -3,9 +3,9 @@ on:
   workflow_call:
     inputs:
       signerID:
-        type: string
+        required: false
       org:
-        type: string
+        required: false
       path:
         required: true
     secrets:
